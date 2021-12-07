@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
+import React,{useState} from "react";
+import DigitalClock from './components/DigitalClock';
+import Countdown from "./components/Countdown";
+import Stopwatch from "./components/Stopwatch";
 import './App.css';
 
 function App() {
+  const [clock,setClock]=useState(false)
+  const [countdown,setCountDown]=useState(false)
+  const [stopWatch,setStopWatch]=useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <nav className="App">
+      <button onClick={()=>{setClock(true);setCountDown(false);setStopWatch(false)}}>Reloj</button>
+      <button onClick={()=>{setClock(false);setCountDown(true);setStopWatch(false)}}>Cuenta atras</button>
+      <button onClick={()=>{setClock(false);setCountDown(false);setStopWatch(true)}}>Cronometro</button>
+      </nav>
+      <div className="Content">
+     {clock?<DigitalClock/>:''}
+     {countdown?<Countdown/>:''}
+     {stopWatch?<Stopwatch/>:''}
+     </div>
+
+
+
+      
     </div>
   );
 }
